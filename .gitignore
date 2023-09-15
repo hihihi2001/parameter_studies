@@ -1,0 +1,13 @@
+# Other repository
+Bubble_dynamics_simulation
+
+# Python garbage
+*__pycache__
+*.ipynb_checkpoints
+
+# Folders (keep here, whatever you don't want to push)
+temp/*
+
+# Unwanted file formats
+
+# Unwanted files
