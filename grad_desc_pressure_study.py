@@ -1,7 +1,7 @@
 """Create parameters.py and load it"""
 
 # Directory for .inp file:
-path = 'Bubble_dynamics_simulation/INP file examples/chem_Otomo2018_without_O.inp'
+path = '/home/yoda/Aron/parameter_studies/Bubble_dynamics_simulation/INP file examples/chem_Otomo2018_without_O.inp'
 
 # import libraries:
 import importlib   # For reloading your own files
@@ -49,7 +49,7 @@ if already_imported: importlib.reload(gd)   # reload changes you made
 
 """Ranges"""
 
-for P_amb in [x*par.atm2Pa for x in [0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 5.0, 10.0]]:
+for P_amb in [x*par.atm2Pa for x in [0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 5.0, 10.0]]:
     print('______________________________________________________________')
     print(f'PRESSURE: {P_amb / par.atm2Pa: .2f} [atm]')
     ranges = dict(
@@ -87,10 +87,10 @@ for P_amb in [x*par.atm2Pa for x in [0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 5.0, 1
 
     # create folder for parameter study results:
     pressure = P_amb / par.atm2Pa
-    file = gd.de.Make_dir(f'2_plus_1_gradient_search/{pressure: .2f}_atm')
+    file = gd.de.Make_dir(f'/home/yoda/Aron/parameter_studies/2_plus_1_gradient_search/{pressure: .2f}_atm')
     to_optimize = 'energy_efficiency'   # key in data from de.get_data()
     searches = 50    # number os total searches
-    trial_points = 5000  # number of trial start_points. best ones will be used for searches
+    trial_points = 2000  # number of trial start_points. best ones will be used for searches
 
 
     kwargs_list = [
