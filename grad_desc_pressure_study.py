@@ -49,7 +49,7 @@ if already_imported: importlib.reload(gd)   # reload changes you made
 
 """Ranges"""
 
-for P_amb in [x*par.atm2Pa for x in [0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 5.0, 10.0]]:
+for P_amb in [x*par.atm2Pa for x in [0.2, 0.15, 0.10, 0.05]]:
     print('______________________________________________________________')
     print(f'PRESSURE: {P_amb / par.atm2Pa: .2f} [atm]')
     ranges = dict(
@@ -77,7 +77,7 @@ for P_amb in [x*par.atm2Pa for x in [0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 5.0, 10.0]]:
         # surfactant (surface tension modfier) [-]
         surfactant = [1.0],
     # Excitation parameters: (excitation_type = no_excitation)
-        p_A = [-x * par.atm2Pa for x in [3.0, 1.0]], # [atm --> Pa]
+        p_A = [-x * par.atm2Pa for x in [3.0, 0.5]], # [atm --> Pa]
         logf = [4.0, 6.0],
         n = [1.0],
     )
@@ -189,7 +189,7 @@ for P_amb in [x*par.atm2Pa for x in [0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 5.0, 10.0]]:
     last_points = []
     start = time.time()
 
-    with Pool(processes=cpu_count(), maxtasksperchild=10) as pool:
+    with Pool(processes=cpu_count(), maxtasksperchild=1) as pool:
         results = pool.imap_unordered(gd.search, kwargs_list)
         for result in results:
             all_datas, best_outputs, elapsed = result
