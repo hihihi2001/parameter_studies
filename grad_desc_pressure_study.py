@@ -30,10 +30,10 @@ plt.rcParams.update({'font.size': 18})
 
 import numpy as np   # matrices, math
 import time   # runtime measurement
-import random   # random number generator
 from multiprocessing import Pool, cpu_count   # multithreading
 import importlib   # reload changes you made
 import json   # convert dictionary to string
+import gc   # garbage collector
 
 # my own file:
 already_imported = 'gd' in globals()
@@ -49,7 +49,7 @@ if already_imported: importlib.reload(gd)   # reload changes you made
 
 """Ranges"""
 
-for P_amb in [x*par.atm2Pa for x in [0.2, 0.15, 0.10, 0.05]]:
+for P_amb in [x*par.atm2Pa for x in [0.05]]:
     print('______________________________________________________________')
     print(f'PRESSURE: {P_amb / par.atm2Pa: .2f} [atm]')
     ranges = dict(
@@ -124,6 +124,7 @@ for P_amb in [x*par.atm2Pa for x in [0.2, 0.15, 0.10, 0.05]]:
             print(f'index: {data.ID: >8}/{len(kwargs_list)};   success: {success};   runtime: {data.elapsed_time: 6.2f} [s]   |   ' + to_print + '|   ' +
                 f'{gd.de.target_specie} production: {data.energy_efficiency: e} [MJ/kg] (best: {best_energy_efficiency: .1f} [MJ/kg])'+
                 '                                                 ', end='\r')
+            del data,
                 
     file.close()
     end = time.time()
@@ -142,7 +143,7 @@ for P_amb in [x*par.atm2Pa for x in [0.2, 0.15, 0.10, 0.05]]:
     kwargs_list = [dict(
         ranges=ranges,
         to_optimize=to_optimize,
-        start_point=start_point,
+        start_point=gd.de.copy(start_point),
         step_limit=200,
         max_step_until_decay=10,
         first_step=0.05, #between two parameter combinations
@@ -152,10 +153,10 @@ for P_amb in [x*par.atm2Pa for x in [0.2, 0.15, 0.10, 0.05]]:
         log10=False,
         verbose=False,
         t_int=[0.0, 1.0],
-        LSODA_timeout=30,
+        LSODA_timeout=50,
         Radau_timeout=300,
         ) for start_point in start_points[:searches]]
-    
+        
     # save all settings (full_bubble_model.py, parameters.py, ranges) as txt:
     to_print = gd.de.copy(kwargs_list[0])
     del to_print['ranges']
@@ -178,6 +179,9 @@ for P_amb in [x*par.atm2Pa for x in [0.2, 0.15, 0.10, 0.05]]:
     ranges_str += ']'
 
     file.write_string(ranges_str, 'gradient_descent_settings')
+    del ranges_str
+    del result, results, start_points
+    gc.collect()
 
 
     """Gradient method, multithread"""
@@ -185,20 +189,15 @@ for P_amb in [x*par.atm2Pa for x in [0.2, 0.15, 0.10, 0.05]]:
     best_output = 1.0e30
     total_point_num = 0
     num = 0
-    to_plot = []
-    last_points = []
     start = time.time()
 
-    with Pool(processes=cpu_count(), maxtasksperchild=1) as pool:
+    with Pool(processes=4, maxtasksperchild=1) as pool:
         results = pool.imap_unordered(gd.search, kwargs_list)
         for result in results:
             all_datas, best_outputs, elapsed = result
             point_num = sum([len(datas) for datas in all_datas])
             total_point_num += point_num
             num += 1
-            to_plot.append(best_outputs)
-            if len(all_datas) > 0 and len(all_datas[-1]) > 0:
-                last_points.append(gd.de.copy(all_datas[-1][0]))
             if best_outputs[-1] < best_output and best_outputs[-1] > 0:
                 best_output = best_outputs[-1]
 
@@ -208,7 +207,8 @@ for P_amb in [x*par.atm2Pa for x in [0.2, 0.15, 0.10, 0.05]]:
                 for data in datas:
                     file.write_line(data)
             file.close()
-            del(all_datas)
+            del all_datas, data
+            gc.collect()
             
             # print stuff:
             if point_num==0: point_num=1
