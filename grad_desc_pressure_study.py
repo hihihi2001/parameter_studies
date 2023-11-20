@@ -33,7 +33,6 @@ import time   # runtime measurement
 from multiprocessing import Pool, cpu_count   # multithreading
 import importlib   # reload changes you made
 import json   # convert dictionary to string
-import gc   # garbage collector
 
 # my own file:
 already_imported = 'gd' in globals()
@@ -49,7 +48,7 @@ if already_imported: importlib.reload(gd)   # reload changes you made
 
 """Ranges"""
 
-for P_amb in [x*par.atm2Pa for x in [0.05]]:
+for P_amb in [x*par.atm2Pa for x in [0.10]]:
     print('______________________________________________________________')
     print(f'PRESSURE: {P_amb / par.atm2Pa: .2f} [atm]')
     ranges = dict(
@@ -87,7 +86,8 @@ for P_amb in [x*par.atm2Pa for x in [0.05]]:
 
     # create folder for parameter study results:
     pressure = P_amb / par.atm2Pa
-    file = gd.de.Make_dir(f'/home/yoda/Aron/parameter_studies/2_plus_1_gradient_search/{pressure: .2f}_atm')
+    path = f'/home/yoda/Aron/parameter_studies/2_plus_1_gradient_search/0.10_atm_memory_test'
+    file = gd.de.Make_dir(path)
     to_optimize = 'energy_efficiency'   # key in data from de.get_data()
     searches = 50    # number os total searches
     trial_points = 2000  # number of trial start_points. best ones will be used for searches
@@ -100,7 +100,6 @@ for P_amb in [x*par.atm2Pa for x in [0.05]]:
             t_int=[0.0, 1.0],
             LSODA_timeout=30,
             Radau_timeout=300,
-            log10=False,
         )
     for i in range(trial_points)]
     best_energy_efficiency = 1e30
@@ -108,7 +107,7 @@ for P_amb in [x*par.atm2Pa for x in [0.05]]:
 
     start = time.time()
     file.new_file()
-    with Pool(processes=cpu_count()-2, maxtasksperchild=100) as pool:
+    with Pool(processes=cpu_count(), maxtasksperchild=100) as pool:
         results = pool.imap_unordered(gd.evaluate_kwargs, kwargs_list)
 
         for result in results:
@@ -137,11 +136,11 @@ for P_amb in [x*par.atm2Pa for x in [0.05]]:
     print(f'best energy_efficiency: {start_points[0]["output"]: e} [MJ/kg]')
     print(f'{searches}th energy_efficiency: {start_points[searches-1]["output"]: e} [MJ/kg]')
 
-
     """Kwargs and save"""
 
     kwargs_list = [dict(
         ranges=ranges,
+        path=path,
         to_optimize=to_optimize,
         start_point=gd.de.copy(start_point),
         step_limit=200,
@@ -150,7 +149,6 @@ for P_amb in [x*par.atm2Pa for x in [0.05]]:
         min_step=1e-4, #between two parameter combinations
         decay=0.5,
         delta=1e-6,
-        log10=False,
         verbose=False,
         t_int=[0.0, 1.0],
         LSODA_timeout=50,
@@ -181,38 +179,23 @@ for P_amb in [x*par.atm2Pa for x in [0.05]]:
     file.write_string(ranges_str, 'gradient_descent_settings')
     del ranges_str
     del result, results, start_points
-    gc.collect()
 
 
     """Gradient method, multithread"""
 
     best_output = 1.0e30
-    total_point_num = 0
     num = 0
     start = time.time()
 
-    with Pool(processes=4, maxtasksperchild=1) as pool:
+    with Pool(processes=cpu_count(), maxtasksperchild=1) as pool:
         results = pool.imap_unordered(gd.search, kwargs_list)
         for result in results:
-            all_datas, best_outputs, elapsed = result
-            point_num = sum([len(datas) for datas in all_datas])
-            total_point_num += point_num
+            best_outputs, elapsed = result
             num += 1
             if best_outputs[-1] < best_output and best_outputs[-1] > 0:
                 best_output = best_outputs[-1]
 
-            # save points
-            file.new_file()
-            for datas in all_datas:
-                for data in datas:
-                    file.write_line(data)
-            file.close()
-            del all_datas, data
-            gc.collect()
-            
-            # print stuff:
-            if point_num==0: point_num=1
-            print(f'{num: >3}/{searches}: Total {len(best_outputs): <3} steps and {point_num: <4} points, finished in {elapsed: 8.2f} [s]   ({(elapsed / point_num): 4.2f} [s/run]).   '+
+            print(f'{num: >3}/{searches}: Total {len(best_outputs): <3} steps finished in {elapsed: 8.2f} [s]   ({(elapsed / len(best_outputs)): 4.2f} [s/search]).   '+
                 f'Final {to_optimize}: {best_outputs[-1]: 8.1f} (best: {best_output: 6.1f})')
                 
     file.close()
@@ -221,5 +204,4 @@ for P_amb in [x*par.atm2Pa for x in [0.05]]:
     print(f'\n\nDONE')
     print(f'total time: {((elapsed-elapsed % 3600) / 3600): .0f} hours {((elapsed % 3600) / 60): .0f} mins')
     print(f'            {elapsed: .2f} [s]   ({(elapsed / searches): .2f} [s/search])')
-    print(f'            {total_point_num: .0f} total points   ({(total_point_num / searches): .0f} [points/search])')
     print(f'            best energy_efficiency: {best_output: .2f} [MJ/kg]')
