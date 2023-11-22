@@ -28,4 +28,4 @@ while True:
     file.write(f'{now},{memory},{processes}\n')
     file.flush()
     print(f'{datetime.datetime.now().strftime("%H:%M:%S")}\t{(virtual_mem.used / 1024 / 1024): .2f} MB ({virtual_mem.percent: .2f} %)')
-    time.sleep(30)
+    time.sleep(60)
