@@ -49,7 +49,7 @@ if already_imported: importlib.reload(gd)   # reload changes you made
 
 """Ranges"""
 
-for P_amb in [x*par.atm2Pa for x in [0.05]]:
+for P_amb in [x*par.atm2Pa for x in [0.10]]:
     print('______________________________________________________________')
     print(f'PRESSURE: {P_amb / par.atm2Pa: .2f} [atm]')
     ranges = dict(
@@ -87,7 +87,7 @@ for P_amb in [x*par.atm2Pa for x in [0.05]]:
 
     # create folder for parameter study results:
     pressure = P_amb / par.atm2Pa
-    file = gd.de.Make_dir(f'/home/yoda/Aron/parameter_studies/2_plus_1_gradient_search/{pressure: .2f}_atm')
+    file = gd.de.Make_dir(f'/home/yoda/Aron/parameter_studies/2_plus_1_gradient_search/0.10_atm_test3')
     to_optimize = 'energy_efficiency'   # key in data from de.get_data()
     searches = 50    # number os total searches
     trial_points = 2000  # number of trial start_points. best ones will be used for searches
