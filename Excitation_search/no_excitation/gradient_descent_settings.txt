@@ -1,0 +1,752 @@
+General information:
+    Created: 2023.11.29 21:41:49 (YYYY.MM.DD HH:MM:SS)
+    Computer name: yodaPC
+    User name: yoda
+    Number of cores: 4
+    Number of logical threads: 8
+    CPU frequency:  3900.00 MHz
+    RAM size:  15859.36 MB
+
+parameters settings:
+    model = chem_Otomo2018_without_O
+    species = ['NH3' 'H2' 'H' 'NH2' 'NH' 'N' 'NNH' 'N2H4' 'N2H3' 'N2H2' 'H2NN' 'N2']
+    number of species = 12
+    number of reactions = 35
+
+full_bubble_model settings:
+    enable_heat_transfer = True
+    enable_evaporation = False 
+    enable_reactions = True
+    enable_dissipated_energy = True
+    target_specie = 'NH3' # Specie to calculate energy effiqiency
+    excitation_type = 'no_excitation' # function to calculate pressure excitation
+
+gradient descent general settings:
+    to_optimize = 'energy_efficiency'   # key in data from de.get_data()
+    searches = 30    # number os total searches
+    trial_points = 5000  # number of trial start_points. best ones will be used for searches
+
+ranges = {
+    "R_E": [
+        1e-06,
+        0.001
+    ],
+    "ratio": [
+        1.5,
+        10.0
+    ],
+    "gases": [
+        [
+            11,
+            1
+        ]
+    ],
+    "fractions": [
+        [
+            0.25,
+            0.75
+        ]
+    ],
+    "P_amb": [
+        101325.0
+    ],
+    "T_inf": [
+        303.15
+    ],
+    "alfa_M": [
+        0.35
+    ],
+    "P_v": [
+        2338.1
+    ],
+    "mu_L": [
+        0.001
+    ],
+    "c_L": [
+        1483.0
+    ],
+    "surfactant": [
+        1.0
+    ]
+}
+
+settings = {
+    "path": "/home/yoda/Aron/parameter_studies/Excitation_search/no_excitation",
+    "to_optimize": "energy_efficiency",
+    "step_limit": 200,
+    "max_step_until_decay": 20,
+    "first_step": 0.01,
+    "min_step": 0.0001,
+    "decay": 0.5,
+    "delta": 1e-06,
+    "verbose": false,
+    "t_int": [
+        0.0,
+        1.0
+    ],
+    "LSODA_timeout": 30,
+    "Radau_timeout": 300
+}
+
+start_points = [
+{
+    "ID": 4011,
+    "R_E": 0.00011444574829223065,
+    "ratio": 5.042192366520068,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 3640.3447326900073,
+    "success": true
+},
+{
+    "ID": 4311,
+    "R_E": 0.00011162809673939373,
+    "ratio": 5.125403633877705,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 3670.981163071664,
+    "success": true
+},
+{
+    "ID": 1135,
+    "R_E": 0.0001111154086292728,
+    "ratio": 5.149856044049234,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 3694.0142309907583,
+    "success": true
+},
+{
+    "ID": 764,
+    "R_E": 0.00011507117276414095,
+    "ratio": 4.929084800542621,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 3695.2902016366165,
+    "success": true
+},
+{
+    "ID": 3444,
+    "R_E": 0.00010962123099952524,
+    "ratio": 5.193810890055242,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 3731.2027892651836,
+    "success": true
+},
+{
+    "ID": 1255,
+    "R_E": 0.00012683336575878355,
+    "ratio": 4.974610375883017,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 3761.9419911993364,
+    "success": true
+},
+{
+    "ID": 3125,
+    "R_E": 0.00010935265258362728,
+    "ratio": 4.914407567762229,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 3771.744295708204,
+    "success": true
+},
+{
+    "ID": 2293,
+    "R_E": 0.00012983623251866858,
+    "ratio": 4.942482963990961,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 3779.824691074672,
+    "success": true
+},
+{
+    "ID": 4683,
+    "R_E": 0.00011650228347510209,
+    "ratio": 5.1333895745757125,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 3781.6859276553514,
+    "success": true
+},
+{
+    "ID": 165,
+    "R_E": 0.00013525830914432426,
+    "ratio": 4.949634226386246,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 3864.481306018329,
+    "success": true
+},
+{
+    "ID": 2062,
+    "R_E": 0.00013563299180533833,
+    "ratio": 4.955273331965055,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 3877.551465120461,
+    "success": true
+},
+{
+    "ID": 3503,
+    "R_E": 0.00013055476400787935,
+    "ratio": 4.807416492626883,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 3883.786329736623,
+    "success": true
+},
+{
+    "ID": 943,
+    "R_E": 0.00011743829032534103,
+    "ratio": 4.841132213811335,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 3904.5321712851396,
+    "success": true
+},
+{
+    "ID": 3191,
+    "R_E": 0.00014935022436593043,
+    "ratio": 4.8894921631097565,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4015.864944977598,
+    "success": true
+},
+{
+    "ID": 2552,
+    "R_E": 0.0001466343573268824,
+    "ratio": 4.729113513473594,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4019.227834919703,
+    "success": true
+},
+{
+    "ID": 500,
+    "R_E": 0.00015240308604684552,
+    "ratio": 4.722942492165932,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4029.263746567174,
+    "success": true
+},
+{
+    "ID": 3418,
+    "R_E": 0.00015661562655228353,
+    "ratio": 4.728473223835181,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4033.8285174547977,
+    "success": true
+},
+{
+    "ID": 4567,
+    "R_E": 0.0001642327164608517,
+    "ratio": 4.751761444659935,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4086.447084296145,
+    "success": true
+},
+{
+    "ID": 241,
+    "R_E": 0.00014855764324155695,
+    "ratio": 4.693563549046873,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4114.200298392503,
+    "success": true
+},
+{
+    "ID": 3597,
+    "R_E": 0.0001697489706521147,
+    "ratio": 4.693055538947628,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4138.893008933627,
+    "success": true
+},
+{
+    "ID": 82,
+    "R_E": 0.00012879002538540175,
+    "ratio": 5.165363205815283,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4152.026816747896,
+    "success": true
+},
+{
+    "ID": 2244,
+    "R_E": 0.00016956515103409332,
+    "ratio": 4.777448730849519,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4175.8551674286255,
+    "success": true
+},
+{
+    "ID": 4695,
+    "R_E": 0.000173882115226748,
+    "ratio": 4.672547630294126,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4179.249241204246,
+    "success": true
+},
+{
+    "ID": 351,
+    "R_E": 0.0001360568557384891,
+    "ratio": 5.116587572452952,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4215.703915987381,
+    "success": true
+},
+{
+    "ID": 1583,
+    "R_E": 0.0001628768287618735,
+    "ratio": 4.6388878158919,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4224.531391810085,
+    "success": true
+},
+{
+    "ID": 988,
+    "R_E": 0.00011192727723525338,
+    "ratio": 5.380183282311016,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4226.386672111907,
+    "success": true
+},
+{
+    "ID": 3145,
+    "R_E": 0.00017864684361859216,
+    "ratio": 4.624626418682723,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4257.036813742588,
+    "success": true
+},
+{
+    "ID": 2592,
+    "R_E": 0.00018479632559195806,
+    "ratio": 4.680576067779155,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4278.6829350625585,
+    "success": true
+},
+{
+    "ID": 3721,
+    "R_E": 0.00017637924881458179,
+    "ratio": 4.851420158999459,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4437.739488472399,
+    "success": true
+},
+{
+    "ID": 4376,
+    "R_E": 0.00016517090344001162,
+    "ratio": 4.585966640873943,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 101325.0,
+    "T_inf": 303.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "output": 4437.799956519206,
+    "success": true
+},
+]
