@@ -1,0 +1,415 @@
+General information:
+    Created: 2024.01.26 15:10:22 (YYYY.MM.DD HH:MM:SS)
+    Computer name: AronPC
+    User name: aron
+    Number of cores: 8
+    Number of logical threads: 16
+    CPU frequency:  3201.00 MHz
+    RAM size:  28524.06 MB
+
+parameters settings:
+    model = chem_Otomo2018_without_O
+    species = ['NH3' 'H2' 'H' 'NH2' 'NH' 'N' 'NNH' 'N2H4' 'N2H3' 'N2H2' 'H2NN' 'N2']
+    number of species = 12
+    number of reactions = 35
+
+full_bubble_model settings:
+    enable_heat_transfer = True
+    enable_evaporation = False 
+    enable_reactions = True
+    enable_dissipated_energy = True
+    target_specie = 'NH3' # Specie to calculate energy effiqiency
+    excitation_type = 'sin_impulse' # function to calculate pressure excitation
+
+        gradient descent general settings:
+            to_optimize = 'energy_efficiency'   # key in data from de.get_data()
+            searches = 12    # number os total searches
+            trial_points = 1000  # number of trial start_points. best ones will be used for searches
+
+        ranges = {
+    "R_E": [
+        4.9999999999999996e-06,
+        0.0005
+    ],
+    "ratio": [
+        1.0
+    ],
+    "gases": [
+        [
+            11,
+            1
+        ]
+    ],
+    "fractions": [
+        [
+            0.25,
+            0.75
+        ]
+    ],
+    "P_amb": [
+        5066.25
+    ],
+    "T_inf": [
+        293.15
+    ],
+    "alfa_M": [
+        0.35
+    ],
+    "P_v": [
+        2338.1
+    ],
+    "mu_L": [
+        0.001
+    ],
+    "rho_L": [
+        998.2
+    ],
+    "c_L": [
+        1483.0
+    ],
+    "surfactant": [
+        1.0
+    ],
+    "p_A": [
+        -150000.0,
+        -600000.0
+    ],
+    "freq": [
+        5000.0,
+        100000.0
+    ],
+    "n": [
+        1.0
+    ]
+}
+
+        settings = {
+    "path": "D:/parameter_studies/2_plus_1_GD2/____0.05_bar",
+    "to_optimize": "energy_efficiency",
+    "step_limit": 100,
+    "first_step": 0.01,
+    "min_step": 0.0001,
+    "delta": 1e-06,
+    "verbose": false,
+    "t_int": [
+        0.0,
+        1.0
+    ],
+    "LSODA_timeout": 30,
+    "Radau_timeout": 300
+}
+
+        start_points = [
+        {
+    "ID": 315,
+    "R_E": 0.00017244745809268222,
+    "ratio": 1.0,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 5066.25,
+    "T_inf": 293.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "rho_L": 998.2,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "p_A": -260986.46170530788,
+    "freq": 13000.750508732797,
+    "n": 1.0,
+    "output": 110.24023623698787,
+    "success": true
+},
+{
+    "ID": 974,
+    "R_E": 0.0001538943577533025,
+    "ratio": 1.0,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 5066.25,
+    "T_inf": 293.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "rho_L": 998.2,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "p_A": -226135.27640994644,
+    "freq": 12792.79345477647,
+    "n": 1.0,
+    "output": 112.92887836955339,
+    "success": true
+},
+{
+    "ID": 563,
+    "R_E": 0.0003528203624505208,
+    "ratio": 1.0,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 5066.25,
+    "T_inf": 293.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "rho_L": 998.2,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "p_A": -424551.4804455772,
+    "freq": 9770.892078194069,
+    "n": 1.0,
+    "output": 113.05631765068838,
+    "success": true
+},
+{
+    "ID": 776,
+    "R_E": 0.00029007651018114034,
+    "ratio": 1.0,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 5066.25,
+    "T_inf": 293.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "rho_L": 998.2,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "p_A": -525287.6056553845,
+    "freq": 13450.52383085637,
+    "n": 1.0,
+    "output": 113.14213406096366,
+    "success": true
+},
+{
+    "ID": 611,
+    "R_E": 0.00040648315368951735,
+    "ratio": 1.0,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 5066.25,
+    "T_inf": 293.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "rho_L": 998.2,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "p_A": -495307.81173017545,
+    "freq": 10215.13869650209,
+    "n": 1.0,
+    "output": 115.23491075773066,
+    "success": true
+},
+{
+    "ID": 199,
+    "R_E": 0.00038517084642968464,
+    "ratio": 1.0,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 5066.25,
+    "T_inf": 293.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "rho_L": 998.2,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "p_A": -565744.6412373587,
+    "freq": 11829.38021544283,
+    "n": 1.0,
+    "output": 118.3615773439103,
+    "success": true
+},
+{
+    "ID": 948,
+    "R_E": 0.00014245962337467566,
+    "ratio": 1.0,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 5066.25,
+    "T_inf": 293.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "rho_L": 998.2,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "p_A": -551026.0922829018,
+    "freq": 25449.85540600223,
+    "n": 1.0,
+    "output": 119.66865468970626,
+    "success": true
+},
+{
+    "ID": 515,
+    "R_E": 0.00012728058980875686,
+    "ratio": 1.0,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 5066.25,
+    "T_inf": 293.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "rho_L": 998.2,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "p_A": -283308.15336198476,
+    "freq": 17704.74710363184,
+    "n": 1.0,
+    "output": 121.5958452422911,
+    "success": true
+},
+{
+    "ID": 451,
+    "R_E": 0.00017550117255627244,
+    "ratio": 1.0,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 5066.25,
+    "T_inf": 293.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "rho_L": 998.2,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "p_A": -245753.6788966947,
+    "freq": 11482.316308043333,
+    "n": 1.0,
+    "output": 130.58785599669966,
+    "success": true
+},
+{
+    "ID": 636,
+    "R_E": 0.00013001275776047057,
+    "ratio": 1.0,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 5066.25,
+    "T_inf": 293.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "rho_L": 998.2,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "p_A": -380221.08839196095,
+    "freq": 20347.139932902588,
+    "n": 1.0,
+    "output": 131.00820392801356,
+    "success": true
+},
+{
+    "ID": 968,
+    "R_E": 0.0002565983102349589,
+    "ratio": 1.0,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 5066.25,
+    "T_inf": 293.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "rho_L": 998.2,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "p_A": -264043.18271315476,
+    "freq": 9927.900422356579,
+    "n": 1.0,
+    "output": 134.57000655924645,
+    "success": true
+},
+{
+    "ID": 276,
+    "R_E": 0.0002968119090983531,
+    "ratio": 1.0,
+    "gases": [
+        11,
+        1
+    ],
+    "fractions": [
+        0.25,
+        0.75
+    ],
+    "P_amb": 5066.25,
+    "T_inf": 293.15,
+    "alfa_M": 0.35,
+    "P_v": 2338.1,
+    "mu_L": 0.001,
+    "rho_L": 998.2,
+    "c_L": 1483.0,
+    "surfactant": 1.0,
+    "p_A": -322588.6603015715,
+    "freq": 8828.928403512491,
+    "n": 1.0,
+    "output": 136.94656809408718,
+    "success": true
+},
+]
